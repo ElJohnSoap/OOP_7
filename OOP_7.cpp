@@ -32,7 +32,6 @@ public:
 
 Stack::Stack()
 {
-	
 	top = EMPTY;//Изначально стек пуст
 }
 
@@ -45,53 +44,55 @@ void Stack::Clear()
 				//на работу с вершиной стека,
 				//будут их игнорировать)
 }
-	bool Stack::IsEmpty()
-	{
-		//Пуст?
-		return top == EMPTY;
-	}
-	bool Stack::IsFull()
-	{
-		//Полон?
-		return top == FULL;
-	}
-	int Stack::GetCount()
-	{
-		//Количество присутствующих в стеке элементов
-		return top + 1;
-	}
-	void Stack::Push(char c)
-	{
-		//Если в стеке есть место, то увеличиваем указатель
-		//на вершину стека и вставляем новый элемент 
-		if (!IsFull())
-			st[++top] = c;
-	}
-	char Stack::Pop()
-	{
-		//Если в стеке есть элементы, то возвращаем
-		
-			//верхний и уменьшаем указатель на вершину стека 
-			if (!IsEmpty())
-				return st[top--];
-			else //Если в стеке элементов нет 
-				return 0;
-	}
+
+bool Stack::IsEmpty()
+{
+	return top == EMPTY; //Пуст?
+}
+
+bool Stack::IsFull()
+{
+	return top == FULL; //Полон?
+}
+
+int Stack::GetCount()
+{
+	return top + 1;//Количество присутствующих в стеке элементов
+}
+
+void Stack::Push(char c)
+{
+	//Если в стеке есть место, то увеличиваем указатель
+	//на вершину стека и вставляем новый элемент 
+	if (!IsFull())
+		st[++top] = c;
+}
+
+char Stack::Pop()
+{
+	if (!IsEmpty())//Если в стеке есть элементы, то возвращаем
+		return st[top--];//верхний и уменьшаем указатель на вершину стека 
+	else //Если в стеке элементов нет 
+		return 0;
+}
 
 
-	void main()
-	{
-		srand(time(0));
-		Stack ST;
-		char c;
-		//пока стек не заполнится
-		while (!ST.IsFull()) {
-			c = rand() % 4 + 2;
-			ST.Push(c);
-		}
-		//пока стек не освободится
-		while (c = ST.Pop()) {
-			cout << c << " ";
-		}
-		cout << "\n\n";
+void main()
+{
+	srand(time(0));
+	Stack st;
+	char c;
+	//пока стек не заполнится
+	while (!st.IsFull()) {
+		c = rand() % 4 + 2;
+		st.Push(c);
 	}
+	//пока стек не освободится
+	int i = 0;
+	while (c = st.Pop()) 
+	{
+		cout <<  i << "=" << c << "  ";
+		++i;
+	}
+	cout << "\n\n";
+}
